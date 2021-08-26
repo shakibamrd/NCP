@@ -12,7 +12,7 @@ import numpy as np
 
 from models.mlp import MLP
 from models.supernet import MultiResolutionNet
-from utils.config import parse_args
+from utils.config import parse_args, Config
 from utils.logger_util import setup_logging
 from utils.train_utils import get_criterion, get_dataloader
 from utils.utils import set_env
@@ -70,7 +70,13 @@ def predicted_metrics(model, normalized_data, cfg):
     return prediction * cfg.data.output_std + cfg.data.output_mean
 
 
-def main(cfg):
+def get_config(task):
+    config_path = f"configs/{task}.yaml"
+    cfg = Config(config_path)
+    return cfg
+
+def query(task, data_embedding):
+    cfg = get_config(task)
     device = set_env(cfg)
 
     logging.info('Loading the dataset.')
@@ -98,12 +104,7 @@ def main(cfg):
     cfg.data.normalized_max_value = (cfg.data.max_value - cfg.data.input_mean) / cfg.data.input_std
     cfg.data.normalized_min_value = (cfg.data.min_value - cfg.data.input_mean) / cfg.data.input_std
 
-    data = torch.tensor([[64, 64,
-                          2, 2, 64,
-                          2, 2, 2, 64, 64,
-                          2, 2, 2, 2, 64, 64, 64,
-                          2, 2, 2, 2, 2, 64, 64, 64, 64,
-                          64]])
+    data = torch.tensor([data_embedding])
 
     # data = torch.tensor([[40, 40, 1, 4, 8, 1, 1, 2, 104, 64, 1, 3, 1, 1, 56, 32, 88, 3, 1, 1, 3, 3, 8, 64, 128, 128, 16]])  # seg
     # data = torch.tensor([[88, 128, 1, 1, 128, 1, 1, 4, 120, 32, 2, 1, 2, 4, 128, 128, 128, 1, 1, 1, 1, 1, 32, 128, 8, 8, 128]])  # cls
@@ -121,7 +122,7 @@ def main(cfg):
 
     edit_net_set = list()
 
-    for iter in tqdm(range(cfg.editing.iters)):
+    for iter in range(cfg.editing.iters):
         optimizer = torch.optim.SGD([normalized_data], lr=cfg.editing.lr)
         optimizer.zero_grad()
         model.zero_grad()
@@ -141,7 +142,7 @@ def main(cfg):
             'params': params
         }
         edit_net_set.append(net_dict)
-        print(net_dict)
+        #print(net_dict)
 
         if cfg.editing.use_flops:
             flops = pred[-2]
@@ -152,10 +153,11 @@ def main(cfg):
         optimizer.step()
 
         for i in range(normalized_data.shape[1]):
-            if normalized_data[0][i] > cfg.data.normalized_max_value[i]:
-                normalized_data[0][i] = cfg.data.normalized_max_value[i]
-            if normalized_data[0][i] < cfg.data.normalized_min_value[i]:
-                normalized_data[0][i] = cfg.data.normalized_min_value[i]
+            with torch.no_grad():
+                if normalized_data[0][i] > cfg.data.normalized_max_value[i]:
+                    normalized_data[0][i] = cfg.data.normalized_max_value[i]
+                if normalized_data[0][i] < cfg.data.normalized_min_value[i]:
+                    normalized_data[0][i] = cfg.data.normalized_min_value[i]
         normalized_data = normalized_data.detach().clone()
         normalized_data.requires_grad = True
 
@@ -165,16 +167,20 @@ def main(cfg):
             rounded_data[i] = _make_divisible(rounded_data[i], cfg.data.min_value[i])
         flops, params = net2flops(list(rounded_data.astype(int)), device)
 
-    pickle.dump(edit_net_set, open(f"{cfg.log_dir}/NCP.pkl", "wb"))
+    return edit_net_set[-1]
 
 
 if __name__ == '__main__':
-    cfg = parse_args()
-    # alias = f'epoch_{cfg.optimization.epoch}-bs_{cfg.optimization.batch_size}' \
-    #         f'-{cfg.optimization.optimizer}-{cfg.optimization.scheduler}'
-    # cfg.timestamp = time.strftime('{}-%Y%m%d-%H%M%S-{}'.format(cfg.data.dataset, alias))
-    cfg.log_dir = '{}/{}'.format(cfg.log_dir, cfg.data.dataset)
-    setup_logging(cfg.log_dir, file_name='NCP.log')
-    logging.info(cfg)
+    tasks = ['seg', 'video', 'cls', '3ddet']
 
-    main(cfg)
+    embedding = [64, 64,
+               2, 2, 64,
+               2, 2, 2, 64, 64,
+               2, 2, 2, 2, 64, 64, 64,
+               2, 2, 2, 2, 2, 64, 64, 64, 64,
+               64]
+
+    for task in tasks:
+        print(f'Querying task: {task}')
+        print(query(task, embedding))
+
