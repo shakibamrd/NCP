@@ -3,7 +3,7 @@ import torch.nn as nn
 from torch.optim import lr_scheduler
 from torch.utils.data import DataLoader
 
-from datasets.dataset import BaseDataset, DataStat
+from ncp.datasets.dataset import BaseDataset, DataStat
 
 
 def get_criterion(name):

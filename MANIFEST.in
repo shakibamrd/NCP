@@ -1,0 +1,3 @@
+include ncp/configs/*.yaml
+recursive-include ncp/data *
+recursive-include ncp/output *

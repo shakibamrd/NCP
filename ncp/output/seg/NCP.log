@@ -1,0 +1,1376 @@
+2021-08-26 21:23:16,361 data:
+    dataset: seg
+    metrics: [['mIoU'], ['mAcc', 'aAcc'], ['flops', 'params']]
+network:
+    input_dim: AUTO
+    shared_layer: 256
+    seperated_layer: 128
+    activation: swish
+    layer1_drop_ratio: 0.5
+    layer2_drop_ratio: [0.5, 0.5, 0]
+optimization:
+    epoch: 200
+    batch_size: 128
+    criterion: smoothl1
+    optimizer: adam
+    adam_param:
+        lr: 0.01
+        weight_decay: 1e-07
+    sgd_param:
+        lr: 0.01
+        weight_decay: 1e-07
+        momentum: 0.9
+        nesterov: False
+    scheduler: onecycle
+    exp_scheduler:
+        gamma: 0.97
+    step_scheduler:
+        milestones: [30, 60, 90]
+        gamma: 0.1
+    onecycle_scheduler:
+        pct_start: 0.3
+        div_factor: 10
+        base_momentum: 0.85
+        max_momentum: 0.95
+    cosine_scheduler:
+        eta_min: 0
+log_dir: output//seg
+log_interval: 50
+SEED: 233
+CUDA_DEVICE: 0
+editing:
+    model_path: output/
+    iters: 70
+    lr: 3
+    per_step_increase: 0.1
+    use_flops: True
+    per_flops_decrease: 0.1
+    alpha: 0.5
+    max_value_alpha: 4
+    max_grad_decline: 0
+config_path: configs/seg.yaml
+2021-08-26 21:23:16,362 Setting environments.
+2021-08-26 21:23:16,362 Loading the dataset.
+2021-08-26 21:23:16,447 Constructing model on the cpu:0.
+2021-08-26 21:23:16,447 MLP(
+  (fc): Sequential(
+    (0): BatchNorm1d(27, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (1): Linear(in_features=27, out_features=256, bias=True)
+    (2): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (3): Swish()
+    (4): Dropout(p=0.5, inplace=False)
+  )
+  (nets): ModuleList(
+    (0): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0.5, inplace=False)
+      (4): Linear(in_features=128, out_features=1, bias=True)
+    )
+    (1): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0.5, inplace=False)
+      (4): Linear(in_features=128, out_features=2, bias=True)
+    )
+    (2): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0, inplace=False)
+      (4): Linear(in_features=128, out_features=2, bias=True)
+    )
+  )
+)
+2021-08-26 21:24:07,706 data:
+    dataset: seg
+    metrics: [['mIoU'], ['mAcc', 'aAcc'], ['flops', 'params']]
+network:
+    input_dim: AUTO
+    shared_layer: 256
+    seperated_layer: 128
+    activation: swish
+    layer1_drop_ratio: 0.5
+    layer2_drop_ratio: [0.5, 0.5, 0]
+optimization:
+    epoch: 200
+    batch_size: 128
+    criterion: smoothl1
+    optimizer: adam
+    adam_param:
+        lr: 0.01
+        weight_decay: 1e-07
+    sgd_param:
+        lr: 0.01
+        weight_decay: 1e-07
+        momentum: 0.9
+        nesterov: False
+    scheduler: onecycle
+    exp_scheduler:
+        gamma: 0.97
+    step_scheduler:
+        milestones: [30, 60, 90]
+        gamma: 0.1
+    onecycle_scheduler:
+        pct_start: 0.3
+        div_factor: 10
+        base_momentum: 0.85
+        max_momentum: 0.95
+    cosine_scheduler:
+        eta_min: 0
+log_dir: output//seg
+log_interval: 50
+SEED: 233
+CUDA_DEVICE: 0
+editing:
+    model_path: output/
+    iters: 70
+    lr: 3
+    per_step_increase: 0.1
+    use_flops: True
+    per_flops_decrease: 0.1
+    alpha: 0.5
+    max_value_alpha: 4
+    max_grad_decline: 0
+config_path: configs/seg.yaml
+2021-08-26 21:24:07,707 Setting environments.
+2021-08-26 21:24:07,707 Loading the dataset.
+2021-08-26 21:24:07,790 Constructing model on the cpu:0.
+2021-08-26 21:24:07,790 MLP(
+  (fc): Sequential(
+    (0): BatchNorm1d(27, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (1): Linear(in_features=27, out_features=256, bias=True)
+    (2): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (3): Swish()
+    (4): Dropout(p=0.5, inplace=False)
+  )
+  (nets): ModuleList(
+    (0): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0.5, inplace=False)
+      (4): Linear(in_features=128, out_features=1, bias=True)
+    )
+    (1): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0.5, inplace=False)
+      (4): Linear(in_features=128, out_features=2, bias=True)
+    )
+    (2): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0, inplace=False)
+      (4): Linear(in_features=128, out_features=2, bias=True)
+    )
+  )
+)
+2021-08-26 21:28:46,210 data:
+    dataset: seg
+    metrics: [['mIoU'], ['mAcc', 'aAcc'], ['flops', 'params']]
+network:
+    input_dim: AUTO
+    shared_layer: 256
+    seperated_layer: 128
+    activation: swish
+    layer1_drop_ratio: 0.5
+    layer2_drop_ratio: [0.5, 0.5, 0]
+optimization:
+    epoch: 200
+    batch_size: 128
+    criterion: smoothl1
+    optimizer: adam
+    adam_param:
+        lr: 0.01
+        weight_decay: 1e-07
+    sgd_param:
+        lr: 0.01
+        weight_decay: 1e-07
+        momentum: 0.9
+        nesterov: False
+    scheduler: onecycle
+    exp_scheduler:
+        gamma: 0.97
+    step_scheduler:
+        milestones: [30, 60, 90]
+        gamma: 0.1
+    onecycle_scheduler:
+        pct_start: 0.3
+        div_factor: 10
+        base_momentum: 0.85
+        max_momentum: 0.95
+    cosine_scheduler:
+        eta_min: 0
+log_dir: output//seg
+log_interval: 50
+SEED: 233
+CUDA_DEVICE: 0
+editing:
+    model_path: output/
+    iters: 70
+    lr: 3
+    per_step_increase: 0.1
+    use_flops: True
+    per_flops_decrease: 0.1
+    alpha: 0.5
+    max_value_alpha: 4
+    max_grad_decline: 0
+config_path: configs/seg.yaml
+2021-08-26 21:28:46,211 Setting environments.
+2021-08-26 21:28:46,211 Loading the dataset.
+2021-08-26 21:28:46,283 Constructing model on the cpu:0.
+2021-08-26 21:28:46,283 MLP(
+  (fc): Sequential(
+    (0): BatchNorm1d(27, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (1): Linear(in_features=27, out_features=256, bias=True)
+    (2): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (3): Swish()
+    (4): Dropout(p=0.5, inplace=False)
+  )
+  (nets): ModuleList(
+    (0): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0.5, inplace=False)
+      (4): Linear(in_features=128, out_features=1, bias=True)
+    )
+    (1): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0.5, inplace=False)
+      (4): Linear(in_features=128, out_features=2, bias=True)
+    )
+    (2): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0, inplace=False)
+      (4): Linear(in_features=128, out_features=2, bias=True)
+    )
+  )
+)
+2021-08-26 21:29:32,430 data:
+    dataset: seg
+    metrics: [['mIoU'], ['mAcc', 'aAcc'], ['flops', 'params']]
+network:
+    input_dim: AUTO
+    shared_layer: 256
+    seperated_layer: 128
+    activation: swish
+    layer1_drop_ratio: 0.5
+    layer2_drop_ratio: [0.5, 0.5, 0]
+optimization:
+    epoch: 200
+    batch_size: 128
+    criterion: smoothl1
+    optimizer: adam
+    adam_param:
+        lr: 0.01
+        weight_decay: 1e-07
+    sgd_param:
+        lr: 0.01
+        weight_decay: 1e-07
+        momentum: 0.9
+        nesterov: False
+    scheduler: onecycle
+    exp_scheduler:
+        gamma: 0.97
+    step_scheduler:
+        milestones: [30, 60, 90]
+        gamma: 0.1
+    onecycle_scheduler:
+        pct_start: 0.3
+        div_factor: 10
+        base_momentum: 0.85
+        max_momentum: 0.95
+    cosine_scheduler:
+        eta_min: 0
+log_dir: output//seg
+log_interval: 50
+SEED: 233
+CUDA_DEVICE: 0
+editing:
+    model_path: output/
+    iters: 70
+    lr: 3
+    per_step_increase: 0.1
+    use_flops: True
+    per_flops_decrease: 0.1
+    alpha: 0.5
+    max_value_alpha: 4
+    max_grad_decline: 0
+config_path: configs/seg.yaml
+2021-08-26 21:29:32,431 Setting environments.
+2021-08-26 21:29:32,431 Loading the dataset.
+2021-08-26 21:29:32,509 Constructing model on the cpu:0.
+2021-08-26 21:29:32,509 MLP(
+  (fc): Sequential(
+    (0): BatchNorm1d(27, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (1): Linear(in_features=27, out_features=256, bias=True)
+    (2): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (3): Swish()
+    (4): Dropout(p=0.5, inplace=False)
+  )
+  (nets): ModuleList(
+    (0): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0.5, inplace=False)
+      (4): Linear(in_features=128, out_features=1, bias=True)
+    )
+    (1): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0.5, inplace=False)
+      (4): Linear(in_features=128, out_features=2, bias=True)
+    )
+    (2): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0, inplace=False)
+      (4): Linear(in_features=128, out_features=2, bias=True)
+    )
+  )
+)
+2021-08-26 21:30:32,167 data:
+    dataset: seg
+    metrics: [['mIoU'], ['mAcc', 'aAcc'], ['flops', 'params']]
+network:
+    input_dim: AUTO
+    shared_layer: 256
+    seperated_layer: 128
+    activation: swish
+    layer1_drop_ratio: 0.5
+    layer2_drop_ratio: [0.5, 0.5, 0]
+optimization:
+    epoch: 200
+    batch_size: 128
+    criterion: smoothl1
+    optimizer: adam
+    adam_param:
+        lr: 0.01
+        weight_decay: 1e-07
+    sgd_param:
+        lr: 0.01
+        weight_decay: 1e-07
+        momentum: 0.9
+        nesterov: False
+    scheduler: onecycle
+    exp_scheduler:
+        gamma: 0.97
+    step_scheduler:
+        milestones: [30, 60, 90]
+        gamma: 0.1
+    onecycle_scheduler:
+        pct_start: 0.3
+        div_factor: 10
+        base_momentum: 0.85
+        max_momentum: 0.95
+    cosine_scheduler:
+        eta_min: 0
+log_dir: output//seg
+log_interval: 50
+SEED: 233
+CUDA_DEVICE: 0
+editing:
+    model_path: output/
+    iters: 70
+    lr: 3
+    per_step_increase: 0.1
+    use_flops: True
+    per_flops_decrease: 0.1
+    alpha: 0.5
+    max_value_alpha: 4
+    max_grad_decline: 0
+config_path: configs/seg.yaml
+2021-08-26 21:30:32,168 Setting environments.
+2021-08-26 21:30:32,169 Loading the dataset.
+2021-08-26 21:30:32,248 Constructing model on the cpu:0.
+2021-08-26 21:30:32,248 MLP(
+  (fc): Sequential(
+    (0): BatchNorm1d(27, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (1): Linear(in_features=27, out_features=256, bias=True)
+    (2): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (3): Swish()
+    (4): Dropout(p=0.5, inplace=False)
+  )
+  (nets): ModuleList(
+    (0): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0.5, inplace=False)
+      (4): Linear(in_features=128, out_features=1, bias=True)
+    )
+    (1): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0.5, inplace=False)
+      (4): Linear(in_features=128, out_features=2, bias=True)
+    )
+    (2): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0, inplace=False)
+      (4): Linear(in_features=128, out_features=2, bias=True)
+    )
+  )
+)
+2021-08-26 21:49:23,176 data:
+    dataset: seg
+    metrics: [['mIoU'], ['mAcc', 'aAcc'], ['flops', 'params']]
+network:
+    input_dim: AUTO
+    shared_layer: 256
+    seperated_layer: 128
+    activation: swish
+    layer1_drop_ratio: 0.5
+    layer2_drop_ratio: [0.5, 0.5, 0]
+optimization:
+    epoch: 200
+    batch_size: 128
+    criterion: smoothl1
+    optimizer: adam
+    adam_param:
+        lr: 0.01
+        weight_decay: 1e-07
+    sgd_param:
+        lr: 0.01
+        weight_decay: 1e-07
+        momentum: 0.9
+        nesterov: False
+    scheduler: onecycle
+    exp_scheduler:
+        gamma: 0.97
+    step_scheduler:
+        milestones: [30, 60, 90]
+        gamma: 0.1
+    onecycle_scheduler:
+        pct_start: 0.3
+        div_factor: 10
+        base_momentum: 0.85
+        max_momentum: 0.95
+    cosine_scheduler:
+        eta_min: 0
+log_dir: output//seg
+log_interval: 50
+SEED: 233
+CUDA_DEVICE: 0
+editing:
+    model_path: output/
+    iters: 70
+    lr: 3
+    per_step_increase: 0.1
+    use_flops: True
+    per_flops_decrease: 0.1
+    alpha: 0.5
+    max_value_alpha: 4
+    max_grad_decline: 0
+config_path: configs/seg.yaml
+2021-08-26 21:49:23,176 Setting environments.
+2021-08-26 21:49:23,177 Loading the dataset.
+2021-08-26 21:49:23,249 Constructing model on the cpu:0.
+2021-08-26 21:49:23,249 MLP(
+  (fc): Sequential(
+    (0): BatchNorm1d(27, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (1): Linear(in_features=27, out_features=256, bias=True)
+    (2): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (3): Swish()
+    (4): Dropout(p=0.5, inplace=False)
+  )
+  (nets): ModuleList(
+    (0): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0.5, inplace=False)
+      (4): Linear(in_features=128, out_features=1, bias=True)
+    )
+    (1): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0.5, inplace=False)
+      (4): Linear(in_features=128, out_features=2, bias=True)
+    )
+    (2): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0, inplace=False)
+      (4): Linear(in_features=128, out_features=2, bias=True)
+    )
+  )
+)
+2021-08-26 21:50:16,991 data:
+    dataset: seg
+    metrics: [['mIoU'], ['mAcc', 'aAcc'], ['flops', 'params']]
+network:
+    input_dim: AUTO
+    shared_layer: 256
+    seperated_layer: 128
+    activation: swish
+    layer1_drop_ratio: 0.5
+    layer2_drop_ratio: [0.5, 0.5, 0]
+optimization:
+    epoch: 200
+    batch_size: 128
+    criterion: smoothl1
+    optimizer: adam
+    adam_param:
+        lr: 0.01
+        weight_decay: 1e-07
+    sgd_param:
+        lr: 0.01
+        weight_decay: 1e-07
+        momentum: 0.9
+        nesterov: False
+    scheduler: onecycle
+    exp_scheduler:
+        gamma: 0.97
+    step_scheduler:
+        milestones: [30, 60, 90]
+        gamma: 0.1
+    onecycle_scheduler:
+        pct_start: 0.3
+        div_factor: 10
+        base_momentum: 0.85
+        max_momentum: 0.95
+    cosine_scheduler:
+        eta_min: 0
+log_dir: output//seg
+log_interval: 50
+SEED: 233
+CUDA_DEVICE: 0
+editing:
+    model_path: output/
+    iters: 70
+    lr: 3
+    per_step_increase: 0.1
+    use_flops: True
+    per_flops_decrease: 0.1
+    alpha: 0.5
+    max_value_alpha: 4
+    max_grad_decline: 0
+config_path: configs/seg.yaml
+2021-08-26 21:50:16,991 Setting environments.
+2021-08-26 21:50:16,992 Loading the dataset.
+2021-08-26 21:50:17,066 Constructing model on the cpu:0.
+2021-08-26 21:50:17,066 MLP(
+  (fc): Sequential(
+    (0): BatchNorm1d(27, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (1): Linear(in_features=27, out_features=256, bias=True)
+    (2): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (3): Swish()
+    (4): Dropout(p=0.5, inplace=False)
+  )
+  (nets): ModuleList(
+    (0): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0.5, inplace=False)
+      (4): Linear(in_features=128, out_features=1, bias=True)
+    )
+    (1): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0.5, inplace=False)
+      (4): Linear(in_features=128, out_features=2, bias=True)
+    )
+    (2): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0, inplace=False)
+      (4): Linear(in_features=128, out_features=2, bias=True)
+    )
+  )
+)
+2021-08-26 21:50:53,402 data:
+    dataset: seg
+    metrics: [['mIoU'], ['mAcc', 'aAcc'], ['flops', 'params']]
+network:
+    input_dim: AUTO
+    shared_layer: 256
+    seperated_layer: 128
+    activation: swish
+    layer1_drop_ratio: 0.5
+    layer2_drop_ratio: [0.5, 0.5, 0]
+optimization:
+    epoch: 200
+    batch_size: 128
+    criterion: smoothl1
+    optimizer: adam
+    adam_param:
+        lr: 0.01
+        weight_decay: 1e-07
+    sgd_param:
+        lr: 0.01
+        weight_decay: 1e-07
+        momentum: 0.9
+        nesterov: False
+    scheduler: onecycle
+    exp_scheduler:
+        gamma: 0.97
+    step_scheduler:
+        milestones: [30, 60, 90]
+        gamma: 0.1
+    onecycle_scheduler:
+        pct_start: 0.3
+        div_factor: 10
+        base_momentum: 0.85
+        max_momentum: 0.95
+    cosine_scheduler:
+        eta_min: 0
+log_dir: output//seg
+log_interval: 50
+SEED: 233
+CUDA_DEVICE: 0
+editing:
+    model_path: output/
+    iters: 70
+    lr: 3
+    per_step_increase: 0.1
+    use_flops: True
+    per_flops_decrease: 0.1
+    alpha: 0.5
+    max_value_alpha: 4
+    max_grad_decline: 0
+config_path: configs/seg.yaml
+2021-08-26 21:50:53,402 Setting environments.
+2021-08-26 21:50:53,403 Loading the dataset.
+2021-08-26 21:50:53,480 Constructing model on the cpu:0.
+2021-08-26 21:50:53,480 MLP(
+  (fc): Sequential(
+    (0): BatchNorm1d(27, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (1): Linear(in_features=27, out_features=256, bias=True)
+    (2): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (3): Swish()
+    (4): Dropout(p=0.5, inplace=False)
+  )
+  (nets): ModuleList(
+    (0): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0.5, inplace=False)
+      (4): Linear(in_features=128, out_features=1, bias=True)
+    )
+    (1): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0.5, inplace=False)
+      (4): Linear(in_features=128, out_features=2, bias=True)
+    )
+    (2): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0, inplace=False)
+      (4): Linear(in_features=128, out_features=2, bias=True)
+    )
+  )
+)
+2021-08-26 21:51:05,103 data:
+    dataset: seg
+    metrics: [['mIoU'], ['mAcc', 'aAcc'], ['flops', 'params']]
+network:
+    input_dim: AUTO
+    shared_layer: 256
+    seperated_layer: 128
+    activation: swish
+    layer1_drop_ratio: 0.5
+    layer2_drop_ratio: [0.5, 0.5, 0]
+optimization:
+    epoch: 200
+    batch_size: 128
+    criterion: smoothl1
+    optimizer: adam
+    adam_param:
+        lr: 0.01
+        weight_decay: 1e-07
+    sgd_param:
+        lr: 0.01
+        weight_decay: 1e-07
+        momentum: 0.9
+        nesterov: False
+    scheduler: onecycle
+    exp_scheduler:
+        gamma: 0.97
+    step_scheduler:
+        milestones: [30, 60, 90]
+        gamma: 0.1
+    onecycle_scheduler:
+        pct_start: 0.3
+        div_factor: 10
+        base_momentum: 0.85
+        max_momentum: 0.95
+    cosine_scheduler:
+        eta_min: 0
+log_dir: output//seg
+log_interval: 50
+SEED: 233
+CUDA_DEVICE: 0
+editing:
+    model_path: output/
+    iters: 70
+    lr: 3
+    per_step_increase: 0.1
+    use_flops: True
+    per_flops_decrease: 0.1
+    alpha: 0.5
+    max_value_alpha: 4
+    max_grad_decline: 0
+config_path: configs/seg.yaml
+2021-08-26 21:51:05,104 Setting environments.
+2021-08-26 21:51:05,104 Loading the dataset.
+2021-08-26 21:51:05,174 Constructing model on the cpu:0.
+2021-08-26 21:51:05,174 MLP(
+  (fc): Sequential(
+    (0): BatchNorm1d(27, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (1): Linear(in_features=27, out_features=256, bias=True)
+    (2): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (3): Swish()
+    (4): Dropout(p=0.5, inplace=False)
+  )
+  (nets): ModuleList(
+    (0): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0.5, inplace=False)
+      (4): Linear(in_features=128, out_features=1, bias=True)
+    )
+    (1): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0.5, inplace=False)
+      (4): Linear(in_features=128, out_features=2, bias=True)
+    )
+    (2): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0, inplace=False)
+      (4): Linear(in_features=128, out_features=2, bias=True)
+    )
+  )
+)
+2021-08-26 21:51:21,321 data:
+    dataset: seg
+    metrics: [['mIoU'], ['mAcc', 'aAcc'], ['flops', 'params']]
+network:
+    input_dim: AUTO
+    shared_layer: 256
+    seperated_layer: 128
+    activation: swish
+    layer1_drop_ratio: 0.5
+    layer2_drop_ratio: [0.5, 0.5, 0]
+optimization:
+    epoch: 200
+    batch_size: 128
+    criterion: smoothl1
+    optimizer: adam
+    adam_param:
+        lr: 0.01
+        weight_decay: 1e-07
+    sgd_param:
+        lr: 0.01
+        weight_decay: 1e-07
+        momentum: 0.9
+        nesterov: False
+    scheduler: onecycle
+    exp_scheduler:
+        gamma: 0.97
+    step_scheduler:
+        milestones: [30, 60, 90]
+        gamma: 0.1
+    onecycle_scheduler:
+        pct_start: 0.3
+        div_factor: 10
+        base_momentum: 0.85
+        max_momentum: 0.95
+    cosine_scheduler:
+        eta_min: 0
+log_dir: output//seg
+log_interval: 50
+SEED: 233
+CUDA_DEVICE: 0
+editing:
+    model_path: output/
+    iters: 70
+    lr: 3
+    per_step_increase: 0.1
+    use_flops: True
+    per_flops_decrease: 0.1
+    alpha: 0.5
+    max_value_alpha: 4
+    max_grad_decline: 0
+config_path: configs/seg.yaml
+2021-08-26 21:51:21,321 Setting environments.
+2021-08-26 21:51:21,322 Loading the dataset.
+2021-08-26 21:51:21,402 Constructing model on the cpu:0.
+2021-08-26 21:51:21,402 MLP(
+  (fc): Sequential(
+    (0): BatchNorm1d(27, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (1): Linear(in_features=27, out_features=256, bias=True)
+    (2): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (3): Swish()
+    (4): Dropout(p=0.5, inplace=False)
+  )
+  (nets): ModuleList(
+    (0): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0.5, inplace=False)
+      (4): Linear(in_features=128, out_features=1, bias=True)
+    )
+    (1): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0.5, inplace=False)
+      (4): Linear(in_features=128, out_features=2, bias=True)
+    )
+    (2): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0, inplace=False)
+      (4): Linear(in_features=128, out_features=2, bias=True)
+    )
+  )
+)
+2021-08-26 21:51:34,719 data:
+    dataset: seg
+    metrics: [['mIoU'], ['mAcc', 'aAcc'], ['flops', 'params']]
+network:
+    input_dim: AUTO
+    shared_layer: 256
+    seperated_layer: 128
+    activation: swish
+    layer1_drop_ratio: 0.5
+    layer2_drop_ratio: [0.5, 0.5, 0]
+optimization:
+    epoch: 200
+    batch_size: 128
+    criterion: smoothl1
+    optimizer: adam
+    adam_param:
+        lr: 0.01
+        weight_decay: 1e-07
+    sgd_param:
+        lr: 0.01
+        weight_decay: 1e-07
+        momentum: 0.9
+        nesterov: False
+    scheduler: onecycle
+    exp_scheduler:
+        gamma: 0.97
+    step_scheduler:
+        milestones: [30, 60, 90]
+        gamma: 0.1
+    onecycle_scheduler:
+        pct_start: 0.3
+        div_factor: 10
+        base_momentum: 0.85
+        max_momentum: 0.95
+    cosine_scheduler:
+        eta_min: 0
+log_dir: output//seg
+log_interval: 50
+SEED: 233
+CUDA_DEVICE: 0
+editing:
+    model_path: output/
+    iters: 70
+    lr: 3
+    per_step_increase: 0.1
+    use_flops: True
+    per_flops_decrease: 0.1
+    alpha: 0.5
+    max_value_alpha: 4
+    max_grad_decline: 0
+config_path: configs/seg.yaml
+2021-08-26 21:51:34,720 Setting environments.
+2021-08-26 21:51:34,721 Loading the dataset.
+2021-08-26 21:51:34,806 Constructing model on the cpu:0.
+2021-08-26 21:51:34,806 MLP(
+  (fc): Sequential(
+    (0): BatchNorm1d(27, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (1): Linear(in_features=27, out_features=256, bias=True)
+    (2): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (3): Swish()
+    (4): Dropout(p=0.5, inplace=False)
+  )
+  (nets): ModuleList(
+    (0): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0.5, inplace=False)
+      (4): Linear(in_features=128, out_features=1, bias=True)
+    )
+    (1): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0.5, inplace=False)
+      (4): Linear(in_features=128, out_features=2, bias=True)
+    )
+    (2): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0, inplace=False)
+      (4): Linear(in_features=128, out_features=2, bias=True)
+    )
+  )
+)
+2021-08-26 21:53:34,115 data:
+    dataset: seg
+    metrics: [['mIoU'], ['mAcc', 'aAcc'], ['flops', 'params']]
+network:
+    input_dim: AUTO
+    shared_layer: 256
+    seperated_layer: 128
+    activation: swish
+    layer1_drop_ratio: 0.5
+    layer2_drop_ratio: [0.5, 0.5, 0]
+optimization:
+    epoch: 200
+    batch_size: 128
+    criterion: smoothl1
+    optimizer: adam
+    adam_param:
+        lr: 0.01
+        weight_decay: 1e-07
+    sgd_param:
+        lr: 0.01
+        weight_decay: 1e-07
+        momentum: 0.9
+        nesterov: False
+    scheduler: onecycle
+    exp_scheduler:
+        gamma: 0.97
+    step_scheduler:
+        milestones: [30, 60, 90]
+        gamma: 0.1
+    onecycle_scheduler:
+        pct_start: 0.3
+        div_factor: 10
+        base_momentum: 0.85
+        max_momentum: 0.95
+    cosine_scheduler:
+        eta_min: 0
+log_dir: output//seg
+log_interval: 50
+SEED: 233
+CUDA_DEVICE: 0
+editing:
+    model_path: output/
+    iters: 70
+    lr: 3
+    per_step_increase: 0.1
+    use_flops: True
+    per_flops_decrease: 0.1
+    alpha: 0.5
+    max_value_alpha: 4
+    max_grad_decline: 0
+config_path: configs/seg.yaml
+2021-08-26 21:53:34,116 Setting environments.
+2021-08-26 21:53:34,117 Loading the dataset.
+2021-08-26 21:53:34,199 Constructing model on the cpu:0.
+2021-08-26 21:53:34,199 MLP(
+  (fc): Sequential(
+    (0): BatchNorm1d(27, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (1): Linear(in_features=27, out_features=256, bias=True)
+    (2): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (3): Swish()
+    (4): Dropout(p=0.5, inplace=False)
+  )
+  (nets): ModuleList(
+    (0): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0.5, inplace=False)
+      (4): Linear(in_features=128, out_features=1, bias=True)
+    )
+    (1): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0.5, inplace=False)
+      (4): Linear(in_features=128, out_features=2, bias=True)
+    )
+    (2): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0, inplace=False)
+      (4): Linear(in_features=128, out_features=2, bias=True)
+    )
+  )
+)
+2021-08-26 21:53:43,906 data:
+    dataset: seg
+    metrics: [['mIoU'], ['mAcc', 'aAcc'], ['flops', 'params']]
+network:
+    input_dim: AUTO
+    shared_layer: 256
+    seperated_layer: 128
+    activation: swish
+    layer1_drop_ratio: 0.5
+    layer2_drop_ratio: [0.5, 0.5, 0]
+optimization:
+    epoch: 200
+    batch_size: 128
+    criterion: smoothl1
+    optimizer: adam
+    adam_param:
+        lr: 0.01
+        weight_decay: 1e-07
+    sgd_param:
+        lr: 0.01
+        weight_decay: 1e-07
+        momentum: 0.9
+        nesterov: False
+    scheduler: onecycle
+    exp_scheduler:
+        gamma: 0.97
+    step_scheduler:
+        milestones: [30, 60, 90]
+        gamma: 0.1
+    onecycle_scheduler:
+        pct_start: 0.3
+        div_factor: 10
+        base_momentum: 0.85
+        max_momentum: 0.95
+    cosine_scheduler:
+        eta_min: 0
+log_dir: output//seg
+log_interval: 50
+SEED: 233
+CUDA_DEVICE: 0
+editing:
+    model_path: output/
+    iters: 70
+    lr: 3
+    per_step_increase: 0.1
+    use_flops: True
+    per_flops_decrease: 0.1
+    alpha: 0.5
+    max_value_alpha: 4
+    max_grad_decline: 0
+config_path: configs/seg.yaml
+2021-08-26 21:53:43,907 Setting environments.
+2021-08-26 21:53:43,908 Loading the dataset.
+2021-08-26 21:53:43,975 Constructing model on the cpu:0.
+2021-08-26 21:53:43,975 MLP(
+  (fc): Sequential(
+    (0): BatchNorm1d(27, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (1): Linear(in_features=27, out_features=256, bias=True)
+    (2): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (3): Swish()
+    (4): Dropout(p=0.5, inplace=False)
+  )
+  (nets): ModuleList(
+    (0): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0.5, inplace=False)
+      (4): Linear(in_features=128, out_features=1, bias=True)
+    )
+    (1): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0.5, inplace=False)
+      (4): Linear(in_features=128, out_features=2, bias=True)
+    )
+    (2): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0, inplace=False)
+      (4): Linear(in_features=128, out_features=2, bias=True)
+    )
+  )
+)
+2021-08-26 21:54:44,205 data:
+    dataset: seg
+    metrics: [['mIoU'], ['mAcc', 'aAcc'], ['flops', 'params']]
+network:
+    input_dim: AUTO
+    shared_layer: 256
+    seperated_layer: 128
+    activation: swish
+    layer1_drop_ratio: 0.5
+    layer2_drop_ratio: [0.5, 0.5, 0]
+optimization:
+    epoch: 200
+    batch_size: 128
+    criterion: smoothl1
+    optimizer: adam
+    adam_param:
+        lr: 0.01
+        weight_decay: 1e-07
+    sgd_param:
+        lr: 0.01
+        weight_decay: 1e-07
+        momentum: 0.9
+        nesterov: False
+    scheduler: onecycle
+    exp_scheduler:
+        gamma: 0.97
+    step_scheduler:
+        milestones: [30, 60, 90]
+        gamma: 0.1
+    onecycle_scheduler:
+        pct_start: 0.3
+        div_factor: 10
+        base_momentum: 0.85
+        max_momentum: 0.95
+    cosine_scheduler:
+        eta_min: 0
+log_dir: output//seg
+log_interval: 50
+SEED: 233
+CUDA_DEVICE: 0
+editing:
+    model_path: output/
+    iters: 70
+    lr: 3
+    per_step_increase: 0.1
+    use_flops: True
+    per_flops_decrease: 0.1
+    alpha: 0.5
+    max_value_alpha: 4
+    max_grad_decline: 0
+config_path: configs/seg.yaml
+2021-08-26 21:54:44,206 Setting environments.
+2021-08-26 21:54:44,207 Loading the dataset.
+2021-08-26 21:54:44,277 Constructing model on the cpu:0.
+2021-08-26 21:54:44,278 MLP(
+  (fc): Sequential(
+    (0): BatchNorm1d(27, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (1): Linear(in_features=27, out_features=256, bias=True)
+    (2): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (3): Swish()
+    (4): Dropout(p=0.5, inplace=False)
+  )
+  (nets): ModuleList(
+    (0): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0.5, inplace=False)
+      (4): Linear(in_features=128, out_features=1, bias=True)
+    )
+    (1): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0.5, inplace=False)
+      (4): Linear(in_features=128, out_features=2, bias=True)
+    )
+    (2): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0, inplace=False)
+      (4): Linear(in_features=128, out_features=2, bias=True)
+    )
+  )
+)
+2021-08-26 21:58:35,452 data:
+    dataset: seg
+    metrics: [['mIoU'], ['mAcc', 'aAcc'], ['flops', 'params']]
+network:
+    input_dim: AUTO
+    shared_layer: 256
+    seperated_layer: 128
+    activation: swish
+    layer1_drop_ratio: 0.5
+    layer2_drop_ratio: [0.5, 0.5, 0]
+optimization:
+    epoch: 200
+    batch_size: 128
+    criterion: smoothl1
+    optimizer: adam
+    adam_param:
+        lr: 0.01
+        weight_decay: 1e-07
+    sgd_param:
+        lr: 0.01
+        weight_decay: 1e-07
+        momentum: 0.9
+        nesterov: False
+    scheduler: onecycle
+    exp_scheduler:
+        gamma: 0.97
+    step_scheduler:
+        milestones: [30, 60, 90]
+        gamma: 0.1
+    onecycle_scheduler:
+        pct_start: 0.3
+        div_factor: 10
+        base_momentum: 0.85
+        max_momentum: 0.95
+    cosine_scheduler:
+        eta_min: 0
+log_dir: output//seg
+log_interval: 50
+SEED: 233
+CUDA_DEVICE: 0
+editing:
+    model_path: output/
+    iters: 70
+    lr: 3
+    per_step_increase: 0.1
+    use_flops: True
+    per_flops_decrease: 0.1
+    alpha: 0.5
+    max_value_alpha: 4
+    max_grad_decline: 0
+config_path: configs/seg.yaml
+2021-08-26 21:58:35,452 Setting environments.
+2021-08-26 21:58:35,453 Loading the dataset.
+2021-08-26 21:58:35,531 Constructing model on the cpu:0.
+2021-08-26 21:58:35,531 MLP(
+  (fc): Sequential(
+    (0): BatchNorm1d(27, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (1): Linear(in_features=27, out_features=256, bias=True)
+    (2): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (3): Swish()
+    (4): Dropout(p=0.5, inplace=False)
+  )
+  (nets): ModuleList(
+    (0): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0.5, inplace=False)
+      (4): Linear(in_features=128, out_features=1, bias=True)
+    )
+    (1): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0.5, inplace=False)
+      (4): Linear(in_features=128, out_features=2, bias=True)
+    )
+    (2): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0, inplace=False)
+      (4): Linear(in_features=128, out_features=2, bias=True)
+    )
+  )
+)
+2021-08-26 22:03:58,230 data:
+    dataset: seg
+    metrics: [['mIoU'], ['mAcc', 'aAcc'], ['flops', 'params']]
+network:
+    input_dim: AUTO
+    shared_layer: 256
+    seperated_layer: 128
+    activation: swish
+    layer1_drop_ratio: 0.5
+    layer2_drop_ratio: [0.5, 0.5, 0]
+optimization:
+    epoch: 200
+    batch_size: 128
+    criterion: smoothl1
+    optimizer: adam
+    adam_param:
+        lr: 0.01
+        weight_decay: 1e-07
+    sgd_param:
+        lr: 0.01
+        weight_decay: 1e-07
+        momentum: 0.9
+        nesterov: False
+    scheduler: onecycle
+    exp_scheduler:
+        gamma: 0.97
+    step_scheduler:
+        milestones: [30, 60, 90]
+        gamma: 0.1
+    onecycle_scheduler:
+        pct_start: 0.3
+        div_factor: 10
+        base_momentum: 0.85
+        max_momentum: 0.95
+    cosine_scheduler:
+        eta_min: 0
+log_dir: output//seg
+log_interval: 50
+SEED: 233
+CUDA_DEVICE: 0
+editing:
+    model_path: output/
+    iters: 70
+    lr: 3
+    per_step_increase: 0.1
+    use_flops: True
+    per_flops_decrease: 0.1
+    alpha: 0.5
+    max_value_alpha: 4
+    max_grad_decline: 0
+config_path: configs/seg.yaml
+2021-08-26 22:03:58,230 Setting environments.
+2021-08-26 22:03:58,231 Loading the dataset.
+2021-08-26 22:03:58,308 Constructing model on the cpu:0.
+2021-08-26 22:03:58,308 MLP(
+  (fc): Sequential(
+    (0): BatchNorm1d(27, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (1): Linear(in_features=27, out_features=256, bias=True)
+    (2): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (3): Swish()
+    (4): Dropout(p=0.5, inplace=False)
+  )
+  (nets): ModuleList(
+    (0): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0.5, inplace=False)
+      (4): Linear(in_features=128, out_features=1, bias=True)
+    )
+    (1): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0.5, inplace=False)
+      (4): Linear(in_features=128, out_features=2, bias=True)
+    )
+    (2): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0, inplace=False)
+      (4): Linear(in_features=128, out_features=2, bias=True)
+    )
+  )
+)

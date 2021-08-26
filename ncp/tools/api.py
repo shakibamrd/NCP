@@ -1,3 +1,4 @@
+import os
 import logging
 import math
 import time
@@ -10,12 +11,12 @@ from thop import profile
 from tqdm import tqdm
 import numpy as np
 
-from models.mlp import MLP
-from models.supernet import MultiResolutionNet
-from utils.config import parse_args, Config
-from utils.logger_util import setup_logging
-from utils.train_utils import get_criterion, get_dataloader
-from utils.utils import set_env
+from ncp.models.mlp import MLP
+from ncp.models.supernet import MultiResolutionNet
+from ncp.utils.config import parse_args, Config
+from ncp.utils.logger_util import setup_logging
+from ncp.utils.train_utils import get_criterion, get_dataloader
+from ncp.utils.utils import set_env, get_project_root
 
 
 def _make_divisible(v, divisor, min_value=None):
@@ -71,7 +72,9 @@ def predicted_metrics(model, normalized_data, cfg):
 
 
 def get_config(task):
-    config_path = f"configs/{task}.yaml"
+    root_path = get_project_root()
+    config_path = os.path.join(root_path, "configs", f"{task}.yaml")
+    print("PATH IS : ", config_path)
     cfg = Config(config_path)
     return cfg
 
@@ -83,8 +86,9 @@ def query(task, data_embedding):
     _, criterion = get_criterion(cfg.optimization.criterion)
     train_dataloader, val_dataloader = get_dataloader(cfg)
 
+    root_path = get_project_root()
     model = MLP(**cfg.network).to(device)
-    model.load_state_dict(torch.load(f'{cfg.editing.model_path}/{cfg.data.dataset}/best_model.pth'))
+    model.load_state_dict(torch.load(f'{root_path}/{cfg.editing.model_path}/{cfg.data.dataset}/best_model.pth'))
     model.eval()
     logging.info(f'Constructing model on the {device}:{cfg.CUDA_DEVICE}.')
     logging.info(model)
@@ -171,16 +175,16 @@ def query(task, data_embedding):
 
 
 if __name__ == '__main__':
-    tasks = ['seg', 'video', 'cls', '3ddet']
+    # tasks = ['seg', 'video', 'cls', '3ddet']
 
-    embedding = [64, 64,
-               2, 2, 64,
-               2, 2, 2, 64, 64,
-               2, 2, 2, 2, 64, 64, 64,
-               2, 2, 2, 2, 2, 64, 64, 64, 64,
-               64]
+    # embedding = [64, 64,
+    #            2, 2, 64,
+    #            2, 2, 2, 64, 64,
+    #            2, 2, 2, 2, 64, 64, 64,
+    #            2, 2, 2, 2, 2, 64, 64, 64, 64,
+    #            64]
 
-    for task in tasks:
-        print(f'Querying task: {task}')
-        print(query(task, embedding))
-
+    # for task in tasks:
+    #     print(f'Querying task: {task}')
+    #     print(query(task, embedding))
+    pass

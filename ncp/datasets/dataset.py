@@ -3,11 +3,13 @@ import pickle
 import numpy as np
 from sklearn.model_selection import train_test_split
 from torch.utils.data import Dataset
+from ncp.utils.utils import get_project_root
 
 
 class DataStat:
     def __init__(self, cfg, name='seg'):
-        self.data = pickle.load(open(f'data/{name}/trainval.pkl', 'rb'))
+        root_path = get_project_root()
+        self.data = pickle.load(open(f'{root_path}/data/{name}/trainval.pkl', 'rb'))
 
         self.input = np.array([item['embedding'] for item in self.data]).astype(np.float32)
         cfg.data.numbers = len(self.data)
@@ -36,11 +38,13 @@ class DataStat:
         self.input_train, self.input_val, self.output_train, self.output_val = \
             train_test_split(self.input, self.output, test_size=0.2)
 
+
+        root_path = get_project_root()
         pickle.dump({'input_train': self.input_train,
                      'input_val': self.input_val,
                      'output_train': self.output_train,
                      'output_val': self.output_val},
-                    open('{}/data_split.pkl'.format(cfg.log_dir), 'wb'))
+                    open(f'{root_path}/{cfg.log_dir}/data_split.pkl', 'wb'))
 
 
 class BaseDataset(Dataset):

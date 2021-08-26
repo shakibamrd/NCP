@@ -1,0 +1,370 @@
+2021-08-26 22:06:34,668 data:
+    dataset: 3ddet
+    metrics: [['moderate'], ['flops', 'params']]
+network:
+    input_dim: AUTO
+    shared_layer: 256
+    seperated_layer: 128
+    activation: swish
+    layer1_drop_ratio: 0.5
+    layer2_drop_ratio: [0.5, 0]
+optimization:
+    epoch: 200
+    batch_size: 128
+    criterion: smoothl1
+    optimizer: adam
+    adam_param:
+        lr: 0.01
+        weight_decay: 1e-07
+    sgd_param:
+        lr: 0.01
+        weight_decay: 1e-07
+        momentum: 0.9
+        nesterov: False
+    scheduler: onecycle
+    exp_scheduler:
+        gamma: 0.97
+    step_scheduler:
+        milestones: [30, 60, 90]
+        gamma: 0.1
+    onecycle_scheduler:
+        pct_start: 0.3
+        div_factor: 10
+        base_momentum: 0.85
+        max_momentum: 0.95
+    cosine_scheduler:
+        eta_min: 0
+log_dir: output//3ddet
+log_interval: 50
+SEED: 233
+CUDA_DEVICE: 0
+editing:
+    model_path: output/
+    iters: 70
+    lr: 3
+    per_step_increase: 0.1
+    use_flops: True
+    per_flops_decrease: 0.1
+    alpha: 0.5
+    max_value_alpha: 4
+    max_grad_decline: 0
+config_path: configs/3ddet.yaml
+2021-08-26 22:06:34,668 Setting environments.
+2021-08-26 22:06:34,669 Loading the dataset.
+2021-08-26 22:06:34,839 Constructing model on the cpu:0.
+2021-08-26 22:06:34,839 MLP(
+  (fc): Sequential(
+    (0): BatchNorm1d(27, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (1): Linear(in_features=27, out_features=256, bias=True)
+    (2): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (3): Swish()
+    (4): Dropout(p=0.5, inplace=False)
+  )
+  (nets): ModuleList(
+    (0): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0.5, inplace=False)
+      (4): Linear(in_features=128, out_features=1, bias=True)
+    )
+    (1): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (2): Swish()
+      (3): Dropout(p=0, inplace=False)
+      (4): Linear(in_features=128, out_features=2, bias=True)
+    )
+  )
+)
+2021-08-26 22:06:34,973 | valid | epoch   0 | Avg loss 2.47585| moderate_loss 2.25882| flops_loss 3.54825| params_loss 1.62048
+2021-08-26 22:06:34,976 New Main Loss 2.258815050125122
+2021-08-26 22:06:35,112 | valid | epoch   1 | Avg loss 2.08693| moderate_loss 2.15939| flops_loss 2.90472| params_loss 1.19669
+2021-08-26 22:06:35,114 New Main Loss 2.1593856811523438
+2021-08-26 22:06:35,263 | valid | epoch   2 | Avg loss 2.03742| moderate_loss 2.13669| flops_loss 2.85138| params_loss 1.12418
+2021-08-26 22:06:35,265 New Main Loss 2.136688470840454
+2021-08-26 22:06:35,412 | valid | epoch   3 | Avg loss 1.99262| moderate_loss 2.12058| flops_loss 2.71832| params_loss 1.13896
+2021-08-26 22:06:35,415 New Main Loss 2.1205787658691406
+2021-08-26 22:06:35,552 | valid | epoch   4 | Avg loss 1.80790| moderate_loss 2.11081| flops_loss 2.36951| params_loss 0.94339
+2021-08-26 22:06:35,553 New Main Loss 2.1108086109161377
+2021-08-26 22:06:35,699 | valid | epoch   5 | Avg loss 1.81148| moderate_loss 2.09129| flops_loss 2.37472| params_loss 0.96844
+2021-08-26 22:06:35,702 New Main Loss 2.0912866592407227
+2021-08-26 22:06:35,839 | valid | epoch   6 | Avg loss 1.71911| moderate_loss 2.06636| flops_loss 2.23439| params_loss 0.85658
+2021-08-26 22:06:35,841 New Main Loss 2.066362142562866
+2021-08-26 22:06:35,975 | valid | epoch   7 | Avg loss 1.76351| moderate_loss 2.08186| flops_loss 2.31277| params_loss 0.89592
+2021-08-26 22:06:36,106 | valid | epoch   8 | Avg loss 1.74161| moderate_loss 2.08233| flops_loss 2.24205| params_loss 0.90044
+2021-08-26 22:06:36,240 | valid | epoch   9 | Avg loss 1.67226| moderate_loss 2.06266| flops_loss 2.13846| params_loss 0.81565
+2021-08-26 22:06:36,242 New Main Loss 2.0626649856567383
+2021-08-26 22:06:36,377 | valid | epoch  10 | Avg loss 1.70634| moderate_loss 2.02173| flops_loss 2.24992| params_loss 0.84736
+2021-08-26 22:06:36,379 New Main Loss 2.021728038787842
+2021-08-26 22:06:36,509 | valid | epoch  11 | Avg loss 1.62652| moderate_loss 2.05604| flops_loss 2.03256| params_loss 0.79096
+2021-08-26 22:06:36,640 | valid | epoch  12 | Avg loss 1.65303| moderate_loss 2.05107| flops_loss 2.12298| params_loss 0.78505
+2021-08-26 22:06:36,772 | valid | epoch  13 | Avg loss 1.60955| moderate_loss 2.03105| flops_loss 2.03995| params_loss 0.75764
+2021-08-26 22:06:36,903 | valid | epoch  14 | Avg loss 1.58869| moderate_loss 1.99606| flops_loss 1.99613| params_loss 0.77388
+2021-08-26 22:06:36,905 New Main Loss 1.9960569143295288
+2021-08-26 22:06:37,040 | valid | epoch  15 | Avg loss 1.67230| moderate_loss 2.00980| flops_loss 2.19539| params_loss 0.81170
+2021-08-26 22:06:37,180 | valid | epoch  16 | Avg loss 1.67284| moderate_loss 1.99278| flops_loss 2.22652| params_loss 0.79922
+2021-08-26 22:06:37,182 New Main Loss 1.9927756786346436
+2021-08-26 22:06:37,325 | valid | epoch  17 | Avg loss 1.53661| moderate_loss 2.00039| flops_loss 1.91147| params_loss 0.69797
+2021-08-26 22:06:37,453 | valid | epoch  18 | Avg loss 1.49058| moderate_loss 2.00104| flops_loss 1.79770| params_loss 0.67300
+2021-08-26 22:06:37,582 | valid | epoch  19 | Avg loss 1.52344| moderate_loss 1.98474| flops_loss 1.90540| params_loss 0.68019
+2021-08-26 22:06:37,584 New Main Loss 1.9847395420074463
+2021-08-26 22:06:37,715 | valid | epoch  20 | Avg loss 1.47973| moderate_loss 2.01701| flops_loss 1.78058| params_loss 0.64161
+2021-08-26 22:06:37,845 | valid | epoch  21 | Avg loss 1.51571| moderate_loss 1.96969| flops_loss 1.95433| params_loss 0.62309
+2021-08-26 22:06:37,846 New Main Loss 1.9696910381317139
+2021-08-26 22:06:37,981 | valid | epoch  22 | Avg loss 1.48748| moderate_loss 2.02934| flops_loss 1.77368| params_loss 0.65943
+2021-08-26 22:06:38,113 | valid | epoch  23 | Avg loss 1.51625| moderate_loss 1.96382| flops_loss 1.92170| params_loss 0.66323
+2021-08-26 22:06:38,115 New Main Loss 1.9638153314590454
+2021-08-26 22:06:38,253 | valid | epoch  24 | Avg loss 1.64985| moderate_loss 2.01910| flops_loss 2.11410| params_loss 0.81634
+2021-08-26 22:06:38,393 | valid | epoch  25 | Avg loss 1.54345| moderate_loss 1.93488| flops_loss 1.98029| params_loss 0.71520
+2021-08-26 22:06:38,395 New Main Loss 1.934877634048462
+2021-08-26 22:06:38,531 | valid | epoch  26 | Avg loss 1.58765| moderate_loss 1.98090| flops_loss 2.04374| params_loss 0.73832
+2021-08-26 22:06:38,670 | valid | epoch  27 | Avg loss 1.62363| moderate_loss 1.98409| flops_loss 2.11327| params_loss 0.77353
+2021-08-26 22:06:38,801 | valid | epoch  28 | Avg loss 1.65477| moderate_loss 1.97424| flops_loss 2.20826| params_loss 0.78182
+2021-08-26 22:06:38,933 | valid | epoch  29 | Avg loss 1.45452| moderate_loss 1.99578| flops_loss 1.75212| params_loss 0.61566
+2021-08-26 22:06:39,063 | valid | epoch  30 | Avg loss 1.46973| moderate_loss 1.99631| flops_loss 1.76010| params_loss 0.65278
+2021-08-26 22:06:39,193 | valid | epoch  31 | Avg loss 1.44894| moderate_loss 1.95411| flops_loss 1.70754| params_loss 0.68518
+2021-08-26 22:06:39,324 | valid | epoch  32 | Avg loss 1.53798| moderate_loss 1.95820| flops_loss 1.95123| params_loss 0.70450
+2021-08-26 22:06:39,453 | valid | epoch  33 | Avg loss 1.43218| moderate_loss 2.04281| flops_loss 1.65901| params_loss 0.59473
+2021-08-26 22:06:39,581 | valid | epoch  34 | Avg loss 1.54936| moderate_loss 1.97473| flops_loss 2.02118| params_loss 0.65217
+2021-08-26 22:06:39,713 | valid | epoch  35 | Avg loss 1.37705| moderate_loss 1.93111| flops_loss 1.62365| params_loss 0.57639
+2021-08-26 22:06:39,715 New Main Loss 1.9311050176620483
+2021-08-26 22:06:39,846 | valid | epoch  36 | Avg loss 1.41780| moderate_loss 2.00170| flops_loss 1.62768| params_loss 0.62403
+2021-08-26 22:06:39,978 | valid | epoch  37 | Avg loss 1.48889| moderate_loss 1.98151| flops_loss 1.88018| params_loss 0.60500
+2021-08-26 22:06:40,107 | valid | epoch  38 | Avg loss 1.41564| moderate_loss 1.96290| flops_loss 1.68348| params_loss 0.60053
+2021-08-26 22:06:40,244 | valid | epoch  39 | Avg loss 1.42962| moderate_loss 1.99243| flops_loss 1.67085| params_loss 0.62557
+2021-08-26 22:06:40,374 | valid | epoch  40 | Avg loss 1.42896| moderate_loss 1.96531| flops_loss 1.65188| params_loss 0.66970
+2021-08-26 22:06:40,503 | valid | epoch  41 | Avg loss 1.54014| moderate_loss 1.92971| flops_loss 1.94971| params_loss 0.74099
+2021-08-26 22:06:40,504 New Main Loss 1.9297075271606445
+2021-08-26 22:06:40,634 | valid | epoch  42 | Avg loss 1.58031| moderate_loss 2.01168| flops_loss 1.91812| params_loss 0.81112
+2021-08-26 22:06:40,771 | valid | epoch  43 | Avg loss 1.37172| moderate_loss 1.99090| flops_loss 1.55721| params_loss 0.56705
+2021-08-26 22:06:40,905 | valid | epoch  44 | Avg loss 1.42123| moderate_loss 1.99547| flops_loss 1.64475| params_loss 0.62347
+2021-08-26 22:06:41,036 | valid | epoch  45 | Avg loss 1.44342| moderate_loss 1.95142| flops_loss 1.65851| params_loss 0.72033
+2021-08-26 22:06:41,181 | valid | epoch  46 | Avg loss 1.46085| moderate_loss 1.96348| flops_loss 1.78408| params_loss 0.63499
+2021-08-26 22:06:41,316 | valid | epoch  47 | Avg loss 1.43410| moderate_loss 1.97555| flops_loss 1.67071| params_loss 0.65605
+2021-08-26 22:06:41,448 | valid | epoch  48 | Avg loss 1.45785| moderate_loss 1.99740| flops_loss 1.73191| params_loss 0.64424
+2021-08-26 22:06:41,578 | valid | epoch  49 | Avg loss 1.47396| moderate_loss 2.00183| flops_loss 1.73732| params_loss 0.68272
+2021-08-26 22:06:41,708 | valid | epoch  50 | Avg loss 1.53573| moderate_loss 1.96292| flops_loss 1.94198| params_loss 0.70229
+2021-08-26 22:06:41,838 | valid | epoch  51 | Avg loss 1.37362| moderate_loss 1.93752| flops_loss 1.62108| params_loss 0.56225
+2021-08-26 22:06:41,970 | valid | epoch  52 | Avg loss 1.51113| moderate_loss 2.04374| flops_loss 1.78802| params_loss 0.70161
+2021-08-26 22:06:42,098 | valid | epoch  53 | Avg loss 1.41909| moderate_loss 1.97597| flops_loss 1.65501| params_loss 0.62629
+2021-08-26 22:06:42,226 | valid | epoch  54 | Avg loss 1.41935| moderate_loss 1.99058| flops_loss 1.72061| params_loss 0.54686
+2021-08-26 22:06:42,354 | valid | epoch  55 | Avg loss 1.36966| moderate_loss 1.99412| flops_loss 1.56887| params_loss 0.54599
+2021-08-26 22:06:42,483 | valid | epoch  56 | Avg loss 1.57632| moderate_loss 1.98308| flops_loss 2.12693| params_loss 0.61896
+2021-08-26 22:06:42,612 | valid | epoch  57 | Avg loss 1.44577| moderate_loss 2.01121| flops_loss 1.61472| params_loss 0.71136
+2021-08-26 22:06:42,741 | valid | epoch  58 | Avg loss 1.49842| moderate_loss 2.04967| flops_loss 1.82321| params_loss 0.62239
+2021-08-26 22:06:42,869 | valid | epoch  59 | Avg loss 1.37068| moderate_loss 1.96565| flops_loss 1.60843| params_loss 0.53795
+2021-08-26 22:06:42,998 | valid | epoch  60 | Avg loss 1.38707| moderate_loss 1.98658| flops_loss 1.62283| params_loss 0.55181
+2021-08-26 22:06:43,128 | valid | epoch  61 | Avg loss 1.35228| moderate_loss 2.01207| flops_loss 1.55144| params_loss 0.49334
+2021-08-26 22:06:43,259 | valid | epoch  62 | Avg loss 1.36392| moderate_loss 1.93089| flops_loss 1.58133| params_loss 0.57954
+2021-08-26 22:06:43,390 | valid | epoch  63 | Avg loss 1.39471| moderate_loss 1.94179| flops_loss 1.67839| params_loss 0.56395
+2021-08-26 22:06:43,521 | valid | epoch  64 | Avg loss 1.57493| moderate_loss 1.92289| flops_loss 2.13251| params_loss 0.66939
+2021-08-26 22:06:43,523 New Main Loss 1.9228944778442383
+2021-08-26 22:06:43,663 | valid | epoch  65 | Avg loss 1.35686| moderate_loss 2.00943| flops_loss 1.56126| params_loss 0.49990
+2021-08-26 22:06:43,802 | valid | epoch  66 | Avg loss 1.45572| moderate_loss 1.96743| flops_loss 1.76895| params_loss 0.63078
+2021-08-26 22:06:43,936 | valid | epoch  67 | Avg loss 1.69143| moderate_loss 2.04514| flops_loss 2.10530| params_loss 0.92385
+2021-08-26 22:06:44,084 | valid | epoch  68 | Avg loss 1.41102| moderate_loss 1.98669| flops_loss 1.67882| params_loss 0.56756
+2021-08-26 22:06:44,220 | valid | epoch  69 | Avg loss 1.46141| moderate_loss 1.96571| flops_loss 1.78206| params_loss 0.63647
+2021-08-26 22:06:44,353 | valid | epoch  70 | Avg loss 1.42646| moderate_loss 2.01531| flops_loss 1.68986| params_loss 0.57421
+2021-08-26 22:06:44,481 | valid | epoch  71 | Avg loss 1.40074| moderate_loss 2.06618| flops_loss 1.59583| params_loss 0.54020
+2021-08-26 22:06:44,612 | valid | epoch  72 | Avg loss 1.41283| moderate_loss 2.13688| flops_loss 1.54402| params_loss 0.55758
+2021-08-26 22:06:44,745 | valid | epoch  73 | Avg loss 1.41135| moderate_loss 1.95586| flops_loss 1.66098| params_loss 0.61722
+2021-08-26 22:06:44,873 | valid | epoch  74 | Avg loss 1.45796| moderate_loss 2.02705| flops_loss 1.77284| params_loss 0.57398
+2021-08-26 22:06:45,002 | valid | epoch  75 | Avg loss 1.41768| moderate_loss 1.96983| flops_loss 1.69195| params_loss 0.59126
+2021-08-26 22:06:45,132 | valid | epoch  76 | Avg loss 1.36216| moderate_loss 2.01110| flops_loss 1.55131| params_loss 0.52407
+2021-08-26 22:06:45,262 | valid | epoch  77 | Avg loss 1.42055| moderate_loss 1.97141| flops_loss 1.77458| params_loss 0.51565
+2021-08-26 22:06:45,391 | valid | epoch  78 | Avg loss 1.37108| moderate_loss 2.00699| flops_loss 1.60541| params_loss 0.50084
+2021-08-26 22:06:45,519 | valid | epoch  79 | Avg loss 1.45707| moderate_loss 1.95818| flops_loss 1.81731| params_loss 0.59574
+2021-08-26 22:06:45,650 | valid | epoch  80 | Avg loss 1.33951| moderate_loss 1.96471| flops_loss 1.55824| params_loss 0.49559
+2021-08-26 22:06:45,781 | valid | epoch  81 | Avg loss 1.39728| moderate_loss 1.94595| flops_loss 1.73921| params_loss 0.50667
+2021-08-26 22:06:45,913 | valid | epoch  82 | Avg loss 1.53000| moderate_loss 1.98838| flops_loss 1.91823| params_loss 0.68339
+2021-08-26 22:06:46,042 | valid | epoch  83 | Avg loss 1.50048| moderate_loss 2.03146| flops_loss 1.85750| params_loss 0.61248
+2021-08-26 22:06:46,173 | valid | epoch  84 | Avg loss 1.33871| moderate_loss 1.94493| flops_loss 1.57320| params_loss 0.49799
+2021-08-26 22:06:46,302 | valid | epoch  85 | Avg loss 1.38240| moderate_loss 1.96365| flops_loss 1.63084| params_loss 0.55271
+2021-08-26 22:06:46,431 | valid | epoch  86 | Avg loss 1.38755| moderate_loss 1.96943| flops_loss 1.64885| params_loss 0.54436
+2021-08-26 22:06:46,559 | valid | epoch  87 | Avg loss 1.38357| moderate_loss 1.98146| flops_loss 1.60513| params_loss 0.56413
+2021-08-26 22:06:46,689 | valid | epoch  88 | Avg loss 1.36661| moderate_loss 1.97254| flops_loss 1.62190| params_loss 0.50538
+2021-08-26 22:06:46,817 | valid | epoch  89 | Avg loss 1.39871| moderate_loss 2.02061| flops_loss 1.69527| params_loss 0.48025
+2021-08-26 22:06:46,947 | valid | epoch  90 | Avg loss 1.37198| moderate_loss 2.01311| flops_loss 1.60899| params_loss 0.49383
+2021-08-26 22:06:47,075 | valid | epoch  91 | Avg loss 1.35574| moderate_loss 1.98496| flops_loss 1.59405| params_loss 0.48820
+2021-08-26 22:06:47,204 | valid | epoch  92 | Avg loss 1.41162| moderate_loss 1.93111| flops_loss 1.74200| params_loss 0.56174
+2021-08-26 22:06:47,332 | valid | epoch  93 | Avg loss 1.40568| moderate_loss 1.94543| flops_loss 1.70107| params_loss 0.57055
+2021-08-26 22:06:47,464 | valid | epoch  94 | Avg loss 1.38679| moderate_loss 1.94818| flops_loss 1.63490| params_loss 0.57729
+2021-08-26 22:06:47,595 | valid | epoch  95 | Avg loss 1.37379| moderate_loss 1.90320| flops_loss 1.70561| params_loss 0.51256
+2021-08-26 22:06:47,597 New Main Loss 1.9031987190246582
+2021-08-26 22:06:47,731 | valid | epoch  96 | Avg loss 1.35542| moderate_loss 1.94321| flops_loss 1.57651| params_loss 0.54655
+2021-08-26 22:06:47,867 | valid | epoch  97 | Avg loss 1.40672| moderate_loss 1.98783| flops_loss 1.62969| params_loss 0.60263
+2021-08-26 22:06:47,997 | valid | epoch  98 | Avg loss 1.55239| moderate_loss 2.03557| flops_loss 1.93408| params_loss 0.68753
+2021-08-26 22:06:48,135 | valid | epoch  99 | Avg loss 1.42132| moderate_loss 2.08573| flops_loss 1.69286| params_loss 0.48536
+2021-08-26 22:06:48,267 | valid | epoch 100 | Avg loss 1.36596| moderate_loss 2.01449| flops_loss 1.59326| params_loss 0.49012
+2021-08-26 22:06:48,399 | valid | epoch 101 | Avg loss 1.40043| moderate_loss 2.06105| flops_loss 1.61883| params_loss 0.52141
+2021-08-26 22:06:48,530 | valid | epoch 102 | Avg loss 1.35418| moderate_loss 1.98511| flops_loss 1.54596| params_loss 0.53147
+2021-08-26 22:06:48,667 | valid | epoch 103 | Avg loss 1.40495| moderate_loss 2.00654| flops_loss 1.71408| params_loss 0.49425
+2021-08-26 22:06:48,806 | valid | epoch 104 | Avg loss 1.43180| moderate_loss 1.99372| flops_loss 1.72598| params_loss 0.57568
+2021-08-26 22:06:48,940 | valid | epoch 105 | Avg loss 1.33225| moderate_loss 1.98927| flops_loss 1.52804| params_loss 0.47942
+2021-08-26 22:06:49,077 | valid | epoch 106 | Avg loss 1.37551| moderate_loss 1.99255| flops_loss 1.65642| params_loss 0.47756
+2021-08-26 22:06:49,218 | valid | epoch 107 | Avg loss 1.38519| moderate_loss 1.96630| flops_loss 1.70233| params_loss 0.48695
+2021-08-26 22:06:49,354 | valid | epoch 108 | Avg loss 1.36988| moderate_loss 2.00725| flops_loss 1.57781| params_loss 0.52460
+2021-08-26 22:06:49,488 | valid | epoch 109 | Avg loss 1.35318| moderate_loss 1.93876| flops_loss 1.61982| params_loss 0.50096
+2021-08-26 22:06:49,629 | valid | epoch 110 | Avg loss 1.35291| moderate_loss 1.99794| flops_loss 1.57449| params_loss 0.48629
+2021-08-26 22:06:49,762 | valid | epoch 111 | Avg loss 1.38896| moderate_loss 1.96467| flops_loss 1.66187| params_loss 0.54033
+2021-08-26 22:06:49,894 | valid | epoch 112 | Avg loss 1.33534| moderate_loss 1.96980| flops_loss 1.58365| params_loss 0.45259
+2021-08-26 22:06:50,027 | valid | epoch 113 | Avg loss 1.34133| moderate_loss 1.99539| flops_loss 1.54973| params_loss 0.47888
+2021-08-26 22:06:50,164 | valid | epoch 114 | Avg loss 1.33995| moderate_loss 1.96946| flops_loss 1.54385| params_loss 0.50655
+2021-08-26 22:06:50,298 | valid | epoch 115 | Avg loss 1.40858| moderate_loss 2.03414| flops_loss 1.73426| params_loss 0.45736
+2021-08-26 22:06:50,426 | valid | epoch 116 | Avg loss 1.39840| moderate_loss 2.01751| flops_loss 1.69022| params_loss 0.48747
+2021-08-26 22:06:50,563 | valid | epoch 117 | Avg loss 1.34987| moderate_loss 1.94654| flops_loss 1.58242| params_loss 0.52065
+2021-08-26 22:06:50,700 | valid | epoch 118 | Avg loss 1.33770| moderate_loss 1.96886| flops_loss 1.53954| params_loss 0.50470
+2021-08-26 22:06:50,834 | valid | epoch 119 | Avg loss 1.35743| moderate_loss 1.99036| flops_loss 1.58101| params_loss 0.50092
+2021-08-26 22:06:50,972 | valid | epoch 120 | Avg loss 1.36985| moderate_loss 1.98918| flops_loss 1.63814| params_loss 0.48223
+2021-08-26 22:06:51,105 | valid | epoch 121 | Avg loss 1.36034| moderate_loss 1.97109| flops_loss 1.62137| params_loss 0.48857
+2021-08-26 22:06:51,240 | valid | epoch 122 | Avg loss 1.36623| moderate_loss 1.98840| flops_loss 1.58982| params_loss 0.52049
+2021-08-26 22:06:51,373 | valid | epoch 123 | Avg loss 1.38274| moderate_loss 1.99042| flops_loss 1.60939| params_loss 0.54842
+2021-08-26 22:06:51,507 | valid | epoch 124 | Avg loss 1.41854| moderate_loss 2.03155| flops_loss 1.61117| params_loss 0.61289
+2021-08-26 22:06:51,639 | valid | epoch 125 | Avg loss 1.35524| moderate_loss 1.98457| flops_loss 1.63164| params_loss 0.44950
+2021-08-26 22:06:51,774 | valid | epoch 126 | Avg loss 1.33054| moderate_loss 1.97898| flops_loss 1.54316| params_loss 0.46947
+2021-08-26 22:06:51,906 | valid | epoch 127 | Avg loss 1.41832| moderate_loss 1.97032| flops_loss 1.76720| params_loss 0.51746
+2021-08-26 22:06:52,035 | valid | epoch 128 | Avg loss 1.37183| moderate_loss 1.99400| flops_loss 1.61150| params_loss 0.50999
+2021-08-26 22:06:52,165 | valid | epoch 129 | Avg loss 1.35918| moderate_loss 1.95531| flops_loss 1.63671| params_loss 0.48552
+2021-08-26 22:06:52,306 | valid | epoch 130 | Avg loss 1.35196| moderate_loss 2.00891| flops_loss 1.57675| params_loss 0.47023
+2021-08-26 22:06:52,441 | valid | epoch 131 | Avg loss 1.34726| moderate_loss 1.95219| flops_loss 1.60321| params_loss 0.48638
+2021-08-26 22:06:52,577 | valid | epoch 132 | Avg loss 1.37164| moderate_loss 1.97705| flops_loss 1.66440| params_loss 0.47347
+2021-08-26 22:06:52,714 | valid | epoch 133 | Avg loss 1.46894| moderate_loss 2.00215| flops_loss 1.78809| params_loss 0.61658
+2021-08-26 22:06:52,847 | valid | epoch 134 | Avg loss 1.34429| moderate_loss 1.98122| flops_loss 1.56835| params_loss 0.48332
+2021-08-26 22:06:52,976 | valid | epoch 135 | Avg loss 1.33036| moderate_loss 1.97144| flops_loss 1.52913| params_loss 0.49051
+2021-08-26 22:06:53,114 | valid | epoch 136 | Avg loss 1.35775| moderate_loss 1.98833| flops_loss 1.57355| params_loss 0.51135
+2021-08-26 22:06:53,249 | valid | epoch 137 | Avg loss 1.33907| moderate_loss 1.98954| flops_loss 1.55616| params_loss 0.47150
+2021-08-26 22:06:53,377 | valid | epoch 138 | Avg loss 1.35341| moderate_loss 2.01011| flops_loss 1.58664| params_loss 0.46349
+2021-08-26 22:06:53,505 | valid | epoch 139 | Avg loss 1.37665| moderate_loss 2.02839| flops_loss 1.58462| params_loss 0.51694
+2021-08-26 22:06:53,632 | valid | epoch 140 | Avg loss 1.37201| moderate_loss 1.99388| flops_loss 1.63659| params_loss 0.48557
+2021-08-26 22:06:53,760 | valid | epoch 141 | Avg loss 1.39964| moderate_loss 1.99314| flops_loss 1.72452| params_loss 0.48127
+2021-08-26 22:06:53,893 | valid | epoch 142 | Avg loss 1.34745| moderate_loss 1.97785| flops_loss 1.56660| params_loss 0.49789
+2021-08-26 22:06:54,022 | valid | epoch 143 | Avg loss 1.35346| moderate_loss 1.97781| flops_loss 1.57453| params_loss 0.50805
+2021-08-26 22:06:54,151 | valid | epoch 144 | Avg loss 1.34773| moderate_loss 1.98787| flops_loss 1.55199| params_loss 0.50333
+2021-08-26 22:06:54,280 | valid | epoch 145 | Avg loss 1.40472| moderate_loss 1.97866| flops_loss 1.71793| params_loss 0.51758
+2021-08-26 22:06:54,407 | valid | epoch 146 | Avg loss 1.37407| moderate_loss 2.01116| flops_loss 1.63030| params_loss 0.48075
+2021-08-26 22:06:54,539 | valid | epoch 147 | Avg loss 1.37429| moderate_loss 2.00356| flops_loss 1.61232| params_loss 0.50699
+2021-08-26 22:06:54,670 | valid | epoch 148 | Avg loss 1.35489| moderate_loss 1.99067| flops_loss 1.60339| params_loss 0.47060
+2021-08-26 22:06:54,798 | valid | epoch 149 | Avg loss 1.35369| moderate_loss 1.97592| flops_loss 1.60948| params_loss 0.47567
+2021-08-26 22:06:54,927 | valid | epoch 150 | Avg loss 1.35004| moderate_loss 1.99072| flops_loss 1.58143| params_loss 0.47797
+2021-08-26 22:06:55,055 | valid | epoch 151 | Avg loss 1.34946| moderate_loss 2.00925| flops_loss 1.58108| params_loss 0.45805
+2021-08-26 22:06:55,186 | valid | epoch 152 | Avg loss 1.35734| moderate_loss 1.99962| flops_loss 1.59833| params_loss 0.47406
+2021-08-26 22:06:55,315 | valid | epoch 153 | Avg loss 1.34860| moderate_loss 2.00138| flops_loss 1.57947| params_loss 0.46493
+2021-08-26 22:06:55,446 | valid | epoch 154 | Avg loss 1.34882| moderate_loss 1.97645| flops_loss 1.60856| params_loss 0.46144
+2021-08-26 22:06:55,577 | valid | epoch 155 | Avg loss 1.35176| moderate_loss 2.00036| flops_loss 1.58359| params_loss 0.47135
+2021-08-26 22:06:55,709 | valid | epoch 156 | Avg loss 1.36906| moderate_loss 1.97346| flops_loss 1.62211| params_loss 0.51161
+2021-08-26 22:06:55,839 | valid | epoch 157 | Avg loss 1.32867| moderate_loss 1.99111| flops_loss 1.54412| params_loss 0.45078
+2021-08-26 22:06:55,967 | valid | epoch 158 | Avg loss 1.33297| moderate_loss 1.99759| flops_loss 1.55473| params_loss 0.44657
+2021-08-26 22:06:56,095 | valid | epoch 159 | Avg loss 1.33095| moderate_loss 1.98949| flops_loss 1.54548| params_loss 0.45788
+2021-08-26 22:06:56,225 | valid | epoch 160 | Avg loss 1.32711| moderate_loss 1.98191| flops_loss 1.54750| params_loss 0.45191
+2021-08-26 22:06:56,353 | valid | epoch 161 | Avg loss 1.34480| moderate_loss 1.98962| flops_loss 1.56824| params_loss 0.47655
+2021-08-26 22:06:56,481 | valid | epoch 162 | Avg loss 1.32931| moderate_loss 1.98636| flops_loss 1.55815| params_loss 0.44341
+2021-08-26 22:06:56,608 | valid | epoch 163 | Avg loss 1.33939| moderate_loss 1.99484| flops_loss 1.55311| params_loss 0.47021
+2021-08-26 22:06:56,738 | valid | epoch 164 | Avg loss 1.32423| moderate_loss 1.99494| flops_loss 1.53844| params_loss 0.43929
+2021-08-26 22:06:56,867 | valid | epoch 165 | Avg loss 1.34043| moderate_loss 1.98162| flops_loss 1.59192| params_loss 0.44775
+2021-08-26 22:06:56,995 | valid | epoch 166 | Avg loss 1.32367| moderate_loss 1.98572| flops_loss 1.52910| params_loss 0.45618
+2021-08-26 22:06:57,123 | valid | epoch 167 | Avg loss 1.33177| moderate_loss 1.98561| flops_loss 1.55371| params_loss 0.45598
+2021-08-26 22:06:57,253 | valid | epoch 168 | Avg loss 1.34829| moderate_loss 1.98571| flops_loss 1.59424| params_loss 0.46492
+2021-08-26 22:06:57,380 | valid | epoch 169 | Avg loss 1.33626| moderate_loss 1.96660| flops_loss 1.57022| params_loss 0.47196
+2021-08-26 22:06:57,510 | valid | epoch 170 | Avg loss 1.33010| moderate_loss 1.98830| flops_loss 1.55833| params_loss 0.44367
+2021-08-26 22:06:57,642 | valid | epoch 171 | Avg loss 1.34988| moderate_loss 1.99747| flops_loss 1.58294| params_loss 0.46924
+2021-08-26 22:06:57,772 | valid | epoch 172 | Avg loss 1.34814| moderate_loss 1.98786| flops_loss 1.58153| params_loss 0.47505
+2021-08-26 22:06:57,905 | valid | epoch 173 | Avg loss 1.32657| moderate_loss 1.99999| flops_loss 1.52824| params_loss 0.45147
+2021-08-26 22:06:58,044 | valid | epoch 174 | Avg loss 1.32579| moderate_loss 1.99991| flops_loss 1.53223| params_loss 0.44524
+2021-08-26 22:06:58,191 | valid | epoch 175 | Avg loss 1.33413| moderate_loss 1.98582| flops_loss 1.55634| params_loss 0.46022
+2021-08-26 22:06:58,350 | valid | epoch 176 | Avg loss 1.34724| moderate_loss 1.99449| flops_loss 1.57976| params_loss 0.46747
+2021-08-26 22:06:58,487 | valid | epoch 177 | Avg loss 1.32824| moderate_loss 1.98910| flops_loss 1.53758| params_loss 0.45803
+2021-08-26 22:06:58,631 | valid | epoch 178 | Avg loss 1.32355| moderate_loss 1.98775| flops_loss 1.54273| params_loss 0.44017
+2021-08-26 22:06:58,799 | valid | epoch 179 | Avg loss 1.33103| moderate_loss 1.98844| flops_loss 1.55551| params_loss 0.44912
+2021-08-26 22:06:58,958 | valid | epoch 180 | Avg loss 1.33110| moderate_loss 1.99474| flops_loss 1.54264| params_loss 0.45591
+2021-08-26 22:06:59,102 | valid | epoch 181 | Avg loss 1.32458| moderate_loss 2.00061| flops_loss 1.52599| params_loss 0.44713
+2021-08-26 22:06:59,257 | valid | epoch 182 | Avg loss 1.32465| moderate_loss 1.99446| flops_loss 1.53594| params_loss 0.44356
+2021-08-26 22:06:59,415 | valid | epoch 183 | Avg loss 1.32693| moderate_loss 1.99462| flops_loss 1.54144| params_loss 0.44473
+2021-08-26 22:06:59,555 | valid | epoch 184 | Avg loss 1.33177| moderate_loss 1.99536| flops_loss 1.54530| params_loss 0.45464
+2021-08-26 22:06:59,697 | valid | epoch 185 | Avg loss 1.32510| moderate_loss 1.97923| flops_loss 1.54559| params_loss 0.45048
+2021-08-26 22:06:59,842 | valid | epoch 186 | Avg loss 1.31665| moderate_loss 1.97787| flops_loss 1.52741| params_loss 0.44467
+2021-08-26 22:06:59,983 | valid | epoch 187 | Avg loss 1.32904| moderate_loss 2.00055| flops_loss 1.53744| params_loss 0.44912
+2021-08-26 22:07:00,130 | valid | epoch 188 | Avg loss 1.31750| moderate_loss 1.99111| flops_loss 1.52328| params_loss 0.43813
+2021-08-26 22:07:00,292 | valid | epoch 189 | Avg loss 1.31975| moderate_loss 1.99087| flops_loss 1.52974| params_loss 0.43863
+2021-08-26 22:07:00,442 | valid | epoch 190 | Avg loss 1.32259| moderate_loss 1.99368| flops_loss 1.53593| params_loss 0.43815
+2021-08-26 22:07:00,586 | valid | epoch 191 | Avg loss 1.33093| moderate_loss 1.99463| flops_loss 1.55390| params_loss 0.44427
+2021-08-26 22:07:00,728 | valid | epoch 192 | Avg loss 1.32496| moderate_loss 1.99981| flops_loss 1.53387| params_loss 0.44120
+2021-08-26 22:07:00,868 | valid | epoch 193 | Avg loss 1.33206| moderate_loss 1.99441| flops_loss 1.54846| params_loss 0.45332
+2021-08-26 22:07:01,009 | valid | epoch 194 | Avg loss 1.32416| moderate_loss 1.99542| flops_loss 1.53188| params_loss 0.44518
+2021-08-26 22:07:01,146 | valid | epoch 195 | Avg loss 1.34030| moderate_loss 1.98990| flops_loss 1.57170| params_loss 0.45932
+2021-08-26 22:07:01,290 | valid | epoch 196 | Avg loss 1.33420| moderate_loss 2.00331| flops_loss 1.54701| params_loss 0.45229
+2021-08-26 22:07:01,429 | valid | epoch 197 | Avg loss 1.32788| moderate_loss 1.99395| flops_loss 1.54495| params_loss 0.44475
+2021-08-26 22:07:01,568 | valid | epoch 198 | Avg loss 1.32427| moderate_loss 1.99306| flops_loss 1.53863| params_loss 0.44113
+2021-08-26 22:07:01,710 | valid | epoch 199 | Avg loss 1.31977| moderate_loss 1.99219| flops_loss 1.52975| params_loss 0.43737
+2021-08-26 22:07:01,712 Best Main Loss 1.9031987190246582
+2021-08-26 22:07:01,713 data:
+    dataset: 3ddet
+    metrics: [['moderate'], ['flops', 'params']]
+    numbers: 2507
+    input_mean: [35.7144    35.787796   2.1072996  2.2397287 64.44994    2.1220582
+      2.2604706  2.2808137 64.97966   64.02872    2.1412046  2.2672517
+      2.2409253  2.2604706 66.04547   65.50938   65.21899    2.1352215
+      2.2688472  2.2445154  2.1982448  2.253291  64.17551   65.0722
+     65.63063   65.26047   64.7499   ]
+    input_std: [18.642317  18.823196   1.0617337  1.1334783 36.81695    1.0542965
+      1.1526697  1.1511751 36.627995  36.62784    1.0598365  1.1289028
+      1.1312823  1.1397935 37.191505  36.879005  36.270393   1.0653114
+      1.1470922  1.1359813  1.1213714  1.1428152 36.28648   36.788513
+     36.830788  36.663914  36.490623 ]
+    combined_metrics: ['moderate', 'flops', 'params']
+    output_mean: [75.6357   11.787388  7.200401]
+    output_std: [4.757474  9.012135  4.7513585]
+network:
+    input_dim: 27
+    shared_layer: 256
+    seperated_layer: 128
+    activation: swish
+    layer1_drop_ratio: 0.5
+    layer2_drop_ratio: [0.5, 0]
+    metrics: [1, 2]
+optimization:
+    epoch: 200
+    batch_size: 128
+    criterion: smoothl1
+    optimizer: adam
+    adam_param:
+        lr: 0.01
+        weight_decay: 1e-07
+    sgd_param:
+        lr: 0.01
+        weight_decay: 1e-07
+        momentum: 0.9
+        nesterov: False
+    scheduler: onecycle
+    exp_scheduler:
+        gamma: 0.97
+    step_scheduler:
+        milestones: [30, 60, 90]
+        gamma: 0.1
+    onecycle_scheduler:
+        pct_start: 0.3
+        div_factor: 10
+        base_momentum: 0.85
+        max_momentum: 0.95
+        total_steps: 3200
+        max_lr: 0.01
+    cosine_scheduler:
+        eta_min: 0
+        T_max: 3200
+    total_steps: 3200
+log_dir: output//3ddet
+log_interval: 50
+SEED: 233
+CUDA_DEVICE: 0
+editing:
+    model_path: output/
+    iters: 70
+    lr: 3
+    per_step_increase: 0.1
+    use_flops: True
+    per_flops_decrease: 0.1
+    alpha: 0.5
+    max_value_alpha: 4
+    max_grad_decline: 0
+config_path: configs/3ddet.yaml
+device: cpu

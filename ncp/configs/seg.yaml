@@ -1,6 +1,6 @@
 data:
-  dataset: video
-  metrics: [[top1], [top5], [flops, params]]
+  dataset: seg
+  metrics: [[mIoU], [mAcc, aAcc], [flops, params]]
 
 network:
   input_dim: AUTO
@@ -39,14 +39,14 @@ optimization:
   cosine_scheduler:
     eta_min: 0
 
-log_dir: output/
+log_dir: output
 log_interval: 50
 SEED: 233
 CUDA_DEVICE: 0
 
 
 editing:
-  model_path: output/
+  model_path: output
   iters: 70
   lr: 3
   per_step_increase: 0.1

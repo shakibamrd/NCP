@@ -6,6 +6,8 @@ import numpy as np
 import torch
 import torch.distributed as dist
 
+from pathlib import Path
+
 
 def _get_env(env_name):
     if env_name not in os.environ:
@@ -38,3 +40,7 @@ def set_env(cfg):
     torch.manual_seed(cfg.SEED)
     cfg.device = device
     return device
+
+def get_project_root():
+    root_path = Path(__file__).parent.parent
+    return root_path
