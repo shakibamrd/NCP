@@ -74,7 +74,7 @@ def predicted_metrics(model, normalized_data, cfg):
 def get_config(task):
     root_path = get_project_root()
     config_path = os.path.join(root_path, "configs", f"{task}.yaml")
-    print("PATH IS : ", config_path)
+    # print("PATH IS : ", config_path)
     cfg = Config(config_path)
     return cfg
 

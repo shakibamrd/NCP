@@ -7,5 +7,6 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     install_requires=[
         'torch>=1.8',
+        'thop',
     ]
 )
