@@ -146,7 +146,7 @@ def query(task, data_embedding):
             'params': params
         }
         edit_net_set.append(net_dict)
-        #print(net_dict)
+        # print(net_dict)
 
         if cfg.editing.use_flops:
             flops = pred[-2]

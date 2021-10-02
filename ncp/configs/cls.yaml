@@ -47,7 +47,7 @@ CUDA_DEVICE: 0
 
 editing:
   model_path: output
-  iters: 70
+  iters: 10
   lr: 3
   per_step_increase: 0.1
   use_flops: True
