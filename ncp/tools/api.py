@@ -32,8 +32,7 @@ def _make_divisible(v, divisor, min_value=None):
     new_v = max(min_value, int(v + divisor / 2) // divisor * divisor)
     return int(new_v)
 
-
-def net2flops(embedding, device):
+def build_model(embedding, device):
     input_channels = embedding[0:2]
     block_1 = embedding[2:3] + [1] + embedding[3:5]
     block_2 = embedding[5:6] + [2] + embedding[6:10]
@@ -47,6 +46,15 @@ def net2flops(embedding, device):
     model = MultiResolutionNet(input_channel=input_channels,
                               network_setting=network_setting,
                               last_channel=last_channel).to(device)
+    return model
+
+def build_model_from_specs(specs, device=None):
+    embedding = [int(item) for item in specs.replace('-', '_').split('_')]
+    print(embedding)
+    return build_model(embedding, device)
+
+def net2flops(embedding, device):
+    model = build_model(embedding, device)
     # Get Flops and Parameters
     input = torch.randn(1, 3, 128, 128).to(device)
     macs, params = profile(model, inputs=(input,), verbose=False)
